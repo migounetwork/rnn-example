@@ -110,7 +110,7 @@ Example 2 - Use variables declared in .env.dev in Info.plist like:
 ## ViewController registration
 ### Import your custom view controller to `ios/rnnexample/AppDelegate.m`
 ```objc
-#import "RNNCustomViewController.h"
+#import "ExternalViewController.h"
 ```
 ### Register constom view controller to `ios/rnnexample/AppDelegate.m`
 ```objc
@@ -132,7 +132,7 @@ Navigation.events().registerAppLaunchedListener(() => {
        stack: {
          children: [
            {
-             component: {
+             externalComponent: {
                name: 'MyExternalComponent'
              }
            }
