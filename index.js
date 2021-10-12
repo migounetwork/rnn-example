@@ -21,7 +21,14 @@ Navigation.events().registerAppLaunchedListener(() => {
               name: 'com.myApp.WelcomeScreen'
             }
           }
-        ]
+        ],
+        options: {
+          topBar: {
+            visible: false,
+            drawBehind: true,
+            animate: false,
+          }
+        }
       }
     }
   });

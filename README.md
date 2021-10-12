@@ -136,7 +136,14 @@ Navigation.events().registerAppLaunchedListener(() => {
                name: 'MyExternalComponent'
              }
            }
-         ]
+         ],
+         options: {
+           topBar: {
+             visible: false,
+             drawBehind: true,
+             animate: false,
+           }
+         }
        }
      }
   });
