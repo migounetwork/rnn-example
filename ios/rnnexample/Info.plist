@@ -29,7 +29,27 @@
 			<string>$(APP_ID_IOS)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>diy101</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>$(APP_ID_IOS)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
 				<string>$(APP_ID_IOS)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>$(APP_ID_IOS)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+                <string>$(APP_NAME)-$(INSTALL_SCHEME)</string>
 			</array>
 		</dict>
 	</array>
@@ -37,16 +57,6 @@
 	<string>$(VER_CODE)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>wechat</string>
-		<string>weixin</string>
-		<string>wxp</string>
-		<string>alipay</string>
-		<string>alipays</string>
-		<string>alipayshare</string>
-		<string>pt</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -60,8 +70,12 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -3,6 +3,16 @@
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
+#import <React/RCTLinkingManager.h>
+
+
+//AppCenter
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
+
+//react-native-orientation-locker
+#import "Orientation.h"
 
 // react-native-splash-screen
 #import "RNSplashScreen.h"
@@ -26,6 +36,9 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+@interface AppDelegate () <RCTBridgeDelegate>
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -33,6 +46,19 @@ static void InitializeFlipper(UIApplication *application) {
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
+
+  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  if (@available(iOS 13.0, *)) {
+      self.window.backgroundColor = [UIColor systemBackgroundColor];
+  } else {
+      self.window.backgroundColor = [UIColor whiteColor];
+  }
+  [self.window makeKeyWindow];
+
+  //AppCenter
+  [AppCenterReactNative register];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   [ReactNativeNavigation bootstrapWithBridge:bridge];
@@ -42,6 +68,9 @@ static void InitializeFlipper(UIApplication *application) {
 
   return YES;
 }
+
+#pragma mark - RCTBridgeDelegate
+
 
 - (NSArray<id<RCTBridgeModule>> *)extraModulesForBridge:(RCTBridge *)bridge {
   return [ReactNativeNavigation extraModulesForBridge:bridge];
@@ -54,6 +83,19 @@ static void InitializeFlipper(UIApplication *application) {
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+//react-native-orientation-locker
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
+}
+
+//Deep link
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
 }
 
 @end
